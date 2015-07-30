@@ -2,7 +2,7 @@
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 var debug = require('debug')('meshblu-mac-vhid')
-var machid = require("node_modules/mac-vhid/build/Release/machid");
+var machid = require("./node_modules/mac-vhid/build/Release/machid");
 
 var send = false;
 var interval = 200;
