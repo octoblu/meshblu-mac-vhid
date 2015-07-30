@@ -15,6 +15,41 @@ var MESSAGE_SCHEMA = {
       type: 'boolean',
       required: true
     },
+   mouse: {
+    type: 'object',
+    properties: {
+      enable: {
+        type: 'boolean',
+        required: false,
+        default: false
+      },
+      mode: {
+        type: 'string',
+        enum: ['move_delta', 'move_absolute'],
+        required: false
+      },
+      x: {
+        type: 'number',
+        required: false,
+      },
+      y: {
+        type: 'number',
+        required: false,
+      }
+    }
+  }
+  }
+};
+
+/*
+
+var MESSAGE_SCHEMA = {
+  type: 'object',
+  properties: {
+    exampleBoolean: {
+      type: 'boolean',
+      required: true
+    },
     keyPress: {
      type: 'object',
      properties: {
@@ -60,6 +95,8 @@ var MESSAGE_SCHEMA = {
   }
 };
 
+*/
+
 var OPTIONS_SCHEMA = {
   type: 'object',
   properties: {
@@ -97,13 +134,15 @@ Plugin.prototype.onMessage = function(message){
   }
 }
 
-  if(payload.keyPress.enable == "true"){
+/*  if(payload.keyPress.enable == "true"){
     if(payload.keyPress.function == "keyUp"){
       machid.keyUp(payload.keyPress.key);
     }else if(payload.keyPress.function == "keyDown"){
         machid.keyUp(payload.keyPress.key);
       }
   }
+
+  */
 };
 
 Plugin.prototype.onConfig = function(device){
