@@ -3,34 +3,13 @@ node_js:
 - '0.10'
 before_install:
   - npm install npm -g
-before_deploy:
-  - npm install ws browserify coffeeify
-  - mkdir -p deploy/meshblu-mac-vhid/latest
-  - mkdir -p deploy/meshblu-mac-vhid/$TRAVIS_TAG
-  - node_modules/.bin/browserify -t coffeeify -s Connector connector.js > deploy/meshblu-mac-vhid/latest/meshblu-mac-vhid.js
-  - gzip deploy/meshblu-mac-vhid/latest/meshblu-mac-vhid.js
-  - mv deploy/meshblu-mac-vhid/latest/meshblu-mac-vhid.js.gz deploy/meshblu-mac-vhid/latest/meshblu-mac-vhid.js
-  - cp deploy/meshblu-mac-vhid/latest/meshblu-mac-vhid.js deploy/meshblu-mac-vhid/$TRAVIS_TAG/meshblu-mac-vhid.js
 deploy:
-  - provider: s3
-    region: us-west-2
-    skip_cleanup: true
-    detect_encoding: true
-    access_key_id: replace-me
-    secret_access_key:
-      secure: replace-me
-    bucket: octoblu-cdn
-    local-dir: deploy
-    upload-dir: js
-    on:
-      tags: true
-      all_branches: true
   - provider: npm
     skip_cleanup: true
     clean_up: false
-    email: replace-me
+    email: serveradmin@octoblu.com
     api_key:
-      secure: replace-me
+      secure: "AFl6ZHTD8iaAe1ZpkFuZHwAOItJyo3GoCZy5OFypYrPGP+hoTtcWPwkscx+D+3RPmBJBh4I8qOaQfUIPpVpqXXXhbEUyFt2ZSb34IxBbPxLJIPesjQ1DAWaDOGs0Rfv9vDD/nVXbXv1mkRunDkDowK82eUR8EQlu4VTotIb4AZ/kAzxlXl2GSYoSVJBKx8I5TMWMwNZOiojVg3PP9fAwB+9SwYgjFZ6xHoBJLi/ym7gnpG734Vn0aVgTrcTo9EKm5TxbiuDYnqfgjoRQyaXf4ne26zitkS3ULnKLIQgS5eSQjiQm9r9AL8SXdhuP2ckJhz78tl5K20D/CoryvhbnIm/CVsfseQN/EWOElBUPN6/bSNCfWS9itVLnNts94NYyW4gvRADSr3BfQjYWF3RJ1MfgsR9gBR6+o8nPaGqPB3pAnrYtyB++dw+4f4PU98Z1cMzku1JGVZRDgCd9rPSg2+x0wZX9yEs/TNUbc9B8JDYh8dMVhTWQ7rLlOHF94rz21KfZ300tSVzl8306vnvWbx/iyUdel6VtVQ1I2LTcc5pNUViC/v07hcMYTg93SBXD18M3rJaLkoB5Y/TSx2MmN3V5PkzdLdx8mb0kF4K1uQixkZ1FGwxFnKUbmp6yPoGXy93wdH/yPlXf7UiNcMvr7ZnZgAPDKrhI25Ah/8qMF3U="
     on:
       tags: true
       all_branches: true
